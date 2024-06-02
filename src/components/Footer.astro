@@ -1,0 +1,39 @@
+---
+interface Props {
+	isTop?: boolean;
+}
+
+const { isTop } = Astro.props;
+
+const blogTitle = 'TREASURE CHEST';
+const nowYear = new Date().getFullYear();
+---
+
+<footer class="footer">
+  <div class="footer-inner">
+    <small class="footer-copy">&copy; nakazawa. {nowYear}</small>
+  </div>
+</footer>
+
+<style lang="scss">
+  .footer {
+    position: sticky;
+    top: 100vh;
+    width: 100%;
+    border-block-start: 1px solid var(--c-border-primary);
+  }
+  .footer-inner {
+    inline-size: 100%;
+    max-inline-size: calc(var(--content-width) + var(--gutter)* 2);
+    margin-inline: auto;
+    margin-block-end: var(--space-m);
+    padding-inline: var(--gutter);
+    padding-block: var(--space-s);
+  }
+  .footer-copy {
+    display: block;
+    font-size: var(--fs-p-s);
+    text-align: center;
+    line-height: 1;
+  }
+</style>

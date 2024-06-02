@@ -1,0 +1,83 @@
+---
+interface Props {
+	isTop?: boolean;
+}
+
+const { isTop } = Astro.props;
+
+const blogTitle = 'TREASURE CHEST';
+---
+
+<header class="header">
+  <div class="header-inner">
+    {
+      isTop ?
+        (
+          <h1 class="header-logo">
+            <a href="/">{blogTitle}</a>
+          </h1>
+        )
+      :
+        (
+          <div class="header-logo">
+            <a href="/">{blogTitle}</a>
+          </div>
+        )
+    }
+
+    <!-- <nav class="header-nav">
+      <ul class="header-nav-inner">
+        <li class="header-nav-item">
+          <a href="">ABOUT</a>
+        </li>
+        <li class="header-nav-item">
+          <a href="">BLOG</a>
+        </li>
+      </ul>
+    </nav> -->
+  </div>
+
+</header>
+
+<style lang="scss">
+  .header {
+    inline-size: 100%;
+    max-inline-size: calc(var(--content-width) + var(--gutter)* 2);
+    margin-inline: auto;
+    margin-block-end: var(--space-m);
+    padding-inline: var(--gutter);
+    @include media(md) {
+      margin-block-end: var(--space-l);
+    }
+  }
+  .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+    padding-inline: var(--space-m);
+    border: 1px solid var(--c-border-primary);
+    border-radius: 12px;
+    @include media(md) {
+      height: 86px;
+      padding-inline: 32px;
+      border-radius: 12px;
+    }
+  }
+  .header-logo {
+    font-size: var(--fs-h-m);
+    font-weight: var(--fw-bold);
+  }
+  .header-nav {
+  }
+  .header-nav-inner {
+    display: flex;
+    gap: var(--space-s);
+  }
+  .header-nav-item {
+    a {
+      font-size: var(--fs-p-l);
+      font-weight: var(--fw-medium);
+    }
+  }
+</style>

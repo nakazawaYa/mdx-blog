@@ -1,0 +1,124 @@
+---
+interface Props {
+  isList: boolean,
+  slug?: string,
+	title: string,
+	date: Date,
+  tags: Array<string>
+}
+
+const { isList, slug, title, date, tags } = Astro.props;
+---
+<div class="blog-header">
+  <time class="blog-time" datetime={date.toLocaleDateString("ja-JP", {year: "numeric",month: "2-digit",day: "2-digit"}).replaceAll('/', '-')}>
+    {date.toLocaleDateString("ja-JP", {year: "numeric",month: "2-digit",day: "2-digit"})}
+  </time>
+
+  {
+    isList ? (
+      <h3 class="blog-heading">
+        <a class="blog-link" href={`/blog/${slug}`}>{title}</a>
+      </h3>
+    )
+    :
+    (
+      <h1 class="blog-header-title">{title}</h1>
+    )
+  }
+
+  <ul class="blog-tag">
+    {
+      tags.map((tag) => (
+        <li class="blog-tag-item">{tag}</li>
+      ))
+    }
+  </ul>
+</div>
+
+<style lang="scss">
+  .blog-heading {
+    margin-block-end: var(--space-s);
+    padding-inline-end: var(--space-m);
+    font-size: var(--fs-p-l);
+    font-weight: var(--fw-medium);
+    @include media(md) {
+      padding-inline-end: var(--space-l);
+    }
+  }
+  .blog-link {
+    &::before {
+      content: "";
+      display: block;
+      width: 16px;
+      height: 16px;
+      position: absolute;
+      top: 50%;
+      right: var(--space-m);
+      translate: 0 -50%;
+      border-block-start: 1px solid var(--c-border-primary);
+      border-inline-end: 1px solid var(--c-border-primary);
+      rotate: 45deg;
+      transition: right .3s ease;
+      @include media(md) {
+        width: 20px;
+        height: 20px;
+        right: var(--space-l);
+      }
+    }
+    &::after {
+      content: "";
+      display: block;
+      position: absolute;
+      inset: 0;
+    }
+    &:hover {
+      &::before {
+        right: var(--space-m);
+      }
+    }
+  }
+  .blog-time {
+    font-size: var(--fs-p-s);
+  }
+  .blog-tag {
+    display: flex;
+  }
+  .blog-tag-item {
+    position: relative;
+    font-size: var(--fs-p-s);
+    border: 1px solid var(--c-border-primary);
+    background-color: #fff;
+    &:not(:last-child) {
+      padding: var(--space-2xs) 12px var(--space-2xs) var(--space-xs);
+    }
+    &:last-child {
+      padding: var(--space-2xs) var(--space-xs);
+    }
+    & + & {
+      border-inline-start: none;
+      &::before {
+        content: "";
+        display: block;
+        width: 10px;
+        height: 10px;
+        position: absolute;
+        top: 50%;
+        left: -6px;
+        translate: 0 -50%;
+        background-color: #fff;
+        border: 1px solid var(--c-border-primary);
+      }
+      &::after {
+        content: "";
+        display: block;
+        width: 6px;
+        height: 50%;
+        position: absolute;
+        top: 50%;
+        left: 0;
+        translate: 0 -50%;
+        background-color: #fff;
+      }
+    }
+  }
+</style>

@@ -1,0 +1,17 @@
+---
+interface Props {
+
+}
+
+const {} = Astro.props;
+---
+<div class="blog-list">
+  <slot />
+</div>
+
+<style lang="scss">
+  .blog-list {
+    border-inline: 1px solid var(--c-border-primary);
+    border-block-end: ipx solid var(--c-border-primary);
+  }
+</style>

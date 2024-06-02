@@ -1,51 +1,121 @@
 ---
+import "the-new-css-reset";
+import '@fontsource/noto-sans-jp/400.css';
+import '@fontsource/noto-sans-jp/500.css';
+import '@fontsource/noto-sans-jp/700.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
 interface Props {
-	title: string;
+	title: string,
+  desc: string,
+  isTop?: boolean,
 }
 
-const { title } = Astro.props;
+const { title, desc, isTop } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="ja">
 	<head>
-		<meta charset="UTF-8" />
-		<meta name="description" content="Astro description" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>{title}</title>
+    <meta name="description" content={desc}>
+
+    <meta property="og:title" content="">
+    <meta property="og:type" content="">
+    <meta property="og:url" content="">
+    <meta property="og:image" content="">
+    <meta property="og:image:alt" content="">
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <!-- <link rel="apple-touch-icon" href="icon.png"> -->
+
+    <meta name="generator" content={Astro.generator} />
 	</head>
 	<body>
-		<slot />
+    <Header isTop={isTop} />
+
+    <main class="main">
+      <slot />
+    </main>
+
+    <Footer />
 	</body>
 </html>
-<style is:global>
-	:root {
-		--accent: 136, 58, 234;
-		--accent-light: 224, 204, 250;
-		--accent-dark: 49, 10, 101;
-		--accent-gradient: linear-gradient(
-			45deg,
-			rgb(var(--accent)),
-			rgb(var(--accent-light)) 30%,
-			white 60%
-		);
-	}
-	html {
-		font-family: system-ui, sans-serif;
-		background: #13151a;
-		background-size: 224px;
-	}
-	code {
-		font-family:
-			Menlo,
-			Monaco,
-			Lucida Console,
-			Liberation Mono,
-			DejaVu Sans Mono,
-			Bitstream Vera Sans Mono,
-			Courier New,
-			monospace;
-	}
+<style lang="scss" is:global>
+  :root {
+    --c-primary: #08131a;
+    --c-border-primary: #062850;
+    --c-secondary: #38D0F2;
+    --c-accent: #1ba0f2;
+
+    --fs-base: .875rem;
+    --fs-h-xl: 2rem;
+    --fs-h-l: 1.625rem;
+    --fs-h-m: 1.3125rem;
+    --fs-h-s: 1.125rem;
+    --fs-p-xl: 1.125rem;
+    --fs-p-l: 1rem;
+    --fs-p-m: var(--fs-base);
+    --fs-p-s: .75rem;
+    --fs-p-xs: .6875rem;
+
+    --fw-normal: 400;
+    --fw-medium: 500;
+    --fw-bold: 700;
+    --lh-base: 1.6;
+    --lh-l: 1.8;
+    --lh-m: var(--lh-base);
+    --lh-s: 1.4;
+    --lh-xs: 1.2;
+
+    --space-2xs: 4px;
+    --space-xs: 8px;
+    --space-s: 16px;
+    --space-m: 24px;
+    --space-l: 40px;
+    --space-xl: 80px;
+    --space-2xl: 120px;
+    --gutter: 20px;
+    @include media(md) {
+      --fs-base: 1rem;
+
+      --fs-h-xl: 2.6875rem;
+      --fs-h-l: 2rem;
+      --fs-h-m: 1.625rem;
+      --fs-h-s: 1.3125rem;
+
+      --fs-p-xl: 1.3125rem;
+      --fs-p-l: 1.125rem;
+      --fs-p-s: .875rem;
+      --fs-p-xs: .75rem;
+
+      --gutter: 80px;
+      --content-width: 1200px;
+    }
+  }
+
+  body {
+    min-height: 100dvh;
+    padding-block-start: var(--space-m);
+    font-size: var(--fs-base);
+    font-family: 'Noto Sans JP', sans-serif;
+    @include media(md) {
+      padding-block-start: var(--space-l);
+    }
+  }
+
+  .main {
+    margin-inline: var(--gutter);
+    @include media(md) {
+      inline-size: 100%;
+      max-inline-size: calc(var(--content-width) + var(--gutter) * 2);
+      margin-inline: auto;
+      padding-inline: var(--gutter);
+    }
+  }
+  .section {
+
+  }
 </style>
