@@ -10,10 +10,6 @@ interface Props {
 const { isList, slug, title, date, tags } = Astro.props;
 ---
 <div class="blog-header">
-  <time class="blog-time" datetime={date.toLocaleDateString("ja-JP", {year: "numeric",month: "2-digit",day: "2-digit"}).replaceAll('/', '-')}>
-    {date.toLocaleDateString("ja-JP", {year: "numeric",month: "2-digit",day: "2-digit"})}
-  </time>
-
   {
     isList ? (
       <h3 class="blog-heading">
@@ -25,6 +21,9 @@ const { isList, slug, title, date, tags } = Astro.props;
       <h1 class="blog-header-title">{title}</h1>
     )
   }
+  <time class="blog-time" datetime={date.toLocaleDateString("ja-JP", {year: "numeric",month: "2-digit",day: "2-digit"}).replaceAll('/', '-')}>
+    {date.toLocaleDateString("ja-JP", {year: "numeric",month: "2-digit",day: "2-digit"})}
+  </time>
 
   <ul class="blog-tag">
     {
@@ -37,11 +36,11 @@ const { isList, slug, title, date, tags } = Astro.props;
 
 <style lang="scss">
   .blog-heading {
-    margin-block-end: var(--space-s);
+    // margin-block-end: var(--space-s);
     padding-inline-end: var(--space-m);
     font-size: var(--fs-p-l);
     font-weight: var(--fw-medium);
-    @include media(md) {
+    @include mq(md) {
       padding-inline-end: var(--space-l);
     }
   }
@@ -49,20 +48,20 @@ const { isList, slug, title, date, tags } = Astro.props;
     &::before {
       content: "";
       display: block;
-      width: 16px;
-      height: 16px;
+      inline-size: 16px;
+      block-size: 16px;
       position: absolute;
-      top: 50%;
-      right: var(--space-m);
+      inset-block-start: 50%;
+      inset-inline-end: var(--space-m);
       translate: 0 -50%;
       border-block-start: 1px solid var(--c-border-primary);
       border-inline-end: 1px solid var(--c-border-primary);
       rotate: 45deg;
-      transition: right .3s ease;
-      @include media(md) {
-        width: 20px;
-        height: 20px;
-        right: var(--space-l);
+      transition: inset-inline-end .3s ease;
+      @include mq(md) {
+        inline-size: 20px;
+        block-size: 20px;
+        inset-inline-end: var(--space-l);
       }
     }
     &::after {
@@ -77,48 +76,30 @@ const { isList, slug, title, date, tags } = Astro.props;
       }
     }
   }
+  .blog-header-title {
+    margin-block-end: var(--space-xs);
+    font-size: var(--fs-h-m);
+    font-weight: var(--fw-bold);
+  }
   .blog-time {
+    display: block;
+    margin-block-end: var(--space-m);
     font-size: var(--fs-p-s);
   }
   .blog-tag {
     display: flex;
+    gap: var(--space-xs);
+    padding-inline-end: var(--space-m);
+    @include mq(md) {
+      padding-inline-end: var(--space-l);
+    }
   }
   .blog-tag-item {
-    position: relative;
+    padding: var(--space-2xs);
     font-size: var(--fs-p-s);
+    line-height: 1.2;
+    background-color: var(--c-bg);
     border: 1px solid var(--c-border-primary);
-    background-color: #fff;
-    &:not(:last-child) {
-      padding: var(--space-2xs) 12px var(--space-2xs) var(--space-xs);
-    }
-    &:last-child {
-      padding: var(--space-2xs) var(--space-xs);
-    }
-    & + & {
-      border-inline-start: none;
-      &::before {
-        content: "";
-        display: block;
-        width: 10px;
-        height: 10px;
-        position: absolute;
-        top: 50%;
-        left: -6px;
-        translate: 0 -50%;
-        background-color: #fff;
-        border: 1px solid var(--c-border-primary);
-      }
-      &::after {
-        content: "";
-        display: block;
-        width: 6px;
-        height: 50%;
-        position: absolute;
-        top: 50%;
-        left: 0;
-        translate: 0 -50%;
-        background-color: #fff;
-      }
-    }
+    border-inline-start: 4px solid var(--c-accent);
   }
 </style>

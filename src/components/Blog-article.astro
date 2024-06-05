@@ -28,11 +28,11 @@ const { isList, slug, title, date, tags } = Astro.props;
     position: relative;
     border-block-end: 1px solid var(--c-border-primary);
     transition: background-color .3s ease;
-    @include media(md) {
+    @include mq(md) {
       padding: var(--space-m);
     }
     &:hover {
-      background-color: rgb(27 160 242  / .2);
+      background-color: var(--c-hover);
     }
   }
 </style>

@@ -15,7 +15,7 @@ export async function getStaticPaths() {
   }));
 }
 
-const blogTitle = '- TREASURE CHEST';
+const blogTitle = ' - TREASURE CHEST';
 
 const { entry } = Astro.props;
 const { Content, headings } = await entry.render();
@@ -27,23 +27,23 @@ const toc = headings.filter((heading) => heading.depth <= 3 && !(heading.slug ==
 
 <Layout title={entry.data.title + blogTitle} desc={entry.data.description}>
   <article>
-    <div class="article-head">
-      <BlogHeader
-        isList={false}
-        title={entry.data.title}
-        date={entry.data.date}
-        tags={entry.data.tags}
-      />
-    </div>
-
     <div class="article-content">
-      <div class="article-sidebar">
+      <div class="article-sidebar article-toc">
         <h2>目次</h2>
         <TOC headings={toc} />
       </div>
 
-      <div class="article-body">
-        <div class="markdown">
+      <div class="article-main">
+        <div class="article-head">
+          <BlogHeader
+            isList={false}
+            title={entry.data.title}
+            date={entry.data.date}
+            tags={entry.data.tags}
+          />
+        </div>
+
+        <div class="article-body markdown">
           <Content />
         </div>
       </div>
@@ -54,29 +54,42 @@ const toc = headings.filter((heading) => heading.depth <= 3 && !(heading.slug ==
 <style lang="scss">
   .article-content {
     display: grid;
-    grid-template-columns: 1fr 392px;
-    grid-template-areas: "body sidebar";
+    grid-template-columns: 1fr;
     gap: 36px;
+    @include mq(xl) {
+      grid-template-columns: 1fr 364px;
+      grid-template-areas: "body sidebar";
+    }
   }
   .article-sidebar {
+    display: none;
     position: sticky;
-    inset-block-start: 0;
+    inset-block-start: 20px;
     grid-area: sidebar;
     align-self: start;
     padding: var(--space-m);
     border: 1px solid var(--c-border-primary);
-    border-radius: 20px;
+    @include mq(xl) {
+      display: block;
+    }
+  }
+  .article-main {
+    border: 1px solid var(--c-border-primary);
+    @include mq(xl) {
+      grid-area: body;
+    }
+  }
+  .article-head {
+    padding: var(--space-m);
+    position: relative;
+
+    background-color: var(--c-bg);
+    background-image: linear-gradient(var(--c-gray) 1px, transparent 1px), linear-gradient(to right, var(--c-gray) 1px, var(--c-bg) 1px);
+    background-size: 20px 20px;
+
+    border-block-end: 1px solid var(--c-border-primary);
   }
   .article-body {
-    grid-area: body;
-    padding: var(--space-l);
-    border: 1px solid var(--c-border-primary);
-    border-radius: 20px;
-  }
-  .markdown {
-    p {
-      color: #f00;
-      line-height: var(--lh-l);
-    }
+    padding: var(--space-m) var(--space-m);
   }
 </style>

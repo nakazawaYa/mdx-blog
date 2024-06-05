@@ -32,11 +32,15 @@ const blogTitle = 'TREASURE CHEST';
 <style lang="scss">
   .heading {
     padding: var(--space-s);
-    background-color: rgb(56 208 242  / .1);
+
+    background-color: var(--c-bg);
+    background-image: linear-gradient(var(--c-gray) 1px, transparent 1px), linear-gradient(to right, var(--c-gray) 1px, var(--c-bg) 1px);
+    background-size: 20px 20px;
+
     border-inline: 1px solid var(--c-border-primary);
     border-block: 1px solid var(--c-border-primary);
-    @include media(md) {
-      padding: var(--space-m);
+    @include mq(md) {
+      padding: var(--space-s) var(--space-m);
     }
     h2 {
       font-size: var(--fs-h-m);

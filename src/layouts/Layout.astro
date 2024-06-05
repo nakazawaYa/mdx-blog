@@ -45,25 +45,32 @@ const { title, desc, isTop } = Astro.props;
 </html>
 <style lang="scss" is:global>
   :root {
-    --c-primary: #08131a;
-    --c-border-primary: #062850;
-    --c-secondary: #38D0F2;
-    --c-accent: #1ba0f2;
+    --c-primary: #1A2633;
+    --c-border-primary: #1A2633;
+    --c-accent: #6898cc;
 
-    --fs-base: .875rem;
-    --fs-h-xl: 2rem;
-    --fs-h-l: 1.625rem;
-    --fs-h-m: 1.3125rem;
+    --c-hover: rgb(104 152 204 / .2);
+
+    --c-bg: #fff;
+
+    --c-white: #fff;
+    --c-gray: #f5f8fa;
+
+    --fs-base: 1rem;
+
+    --fs-h-xl: 1.5rem;
+    --fs-h-l: 1.5rem;
+    --fs-h-m: 1.25rem;
     --fs-h-s: 1.125rem;
-    --fs-p-xl: 1.125rem;
-    --fs-p-l: 1rem;
+
+    --fs-p-l: 1.125rem;
     --fs-p-m: var(--fs-base);
-    --fs-p-s: .75rem;
-    --fs-p-xs: .6875rem;
+    --fs-p-s: .875rem;
 
     --fw-normal: 400;
     --fw-medium: 500;
     --fw-bold: 700;
+
     --lh-base: 1.6;
     --lh-l: 1.8;
     --lh-m: var(--lh-base);
@@ -78,18 +85,15 @@ const { title, desc, isTop } = Astro.props;
     --space-xl: 80px;
     --space-2xl: 120px;
     --gutter: 20px;
-    @include media(md) {
-      --fs-base: 1rem;
+    @include mq(md) {
+      --fs-h-xl: 2.25rem;
+      --fs-h-l: 1.875rem;
+      --fs-h-m: 1.5rem;
+      --fs-h-s: 1.25rem;
 
-      --fs-h-xl: 2.6875rem;
-      --fs-h-l: 2rem;
-      --fs-h-m: 1.625rem;
-      --fs-h-s: 1.3125rem;
-
-      --fs-p-xl: 1.3125rem;
-      --fs-p-l: 1.125rem;
-      --fs-p-s: .875rem;
-      --fs-p-xs: .75rem;
+      --fs-p-l: 1.25rem;
+      --fs-p-m: 1.125rem;
+      --fs-p-s: 1rem;
 
       --gutter: 80px;
       --content-width: 1200px;
@@ -101,21 +105,139 @@ const { title, desc, isTop } = Astro.props;
     padding-block-start: var(--space-m);
     font-size: var(--fs-base);
     font-family: 'Noto Sans JP', sans-serif;
-    @include media(md) {
+    line-height: var(--lh-base);
+    @include mq(md) {
       padding-block-start: var(--space-l);
     }
   }
-
   .main {
     margin-inline: var(--gutter);
-    @include media(md) {
+    @include mq(md) {
       inline-size: 100%;
       max-inline-size: calc(var(--content-width) + var(--gutter) * 2);
       margin-inline: auto;
       padding-inline: var(--gutter);
     }
   }
-  .section {
+  .markdown {
+    & > * {
+      line-height: var(--lh-l);
+      &:first-child {
+        margin-block-start: 0;
+      }
+      &:last-child {
+        margin-block-end: 0;
+      }
+    }
+    :where(p:not([class])) {
+      margin-block: 18px;
+      font-size: var(--fs-p-m);
+      @include mq(md) {
+        margin-block: var(--space-m);
+      }
+      strong {
+        font-weight: var(--fw-bold);
+      }
+    }
+    :where(h2:not([class]),h3:not([class]),h4:not([class])) {
+      scroll-margin-block-start: var(--space-m);
 
+      font-weight: var(--fw-bold);
+      font-feature-settings: "palt";
+      line-height: 1.375;
+      letter-spacing: .05em;
+      word-break: auto-phrase;
+    }
+    :where(h2:not([class])) {
+      margin-block-start: 48px;
+      margin-block-end: var(--space-s);
+      font-size: var(--fs-h-m);
+      font-weight: var(--fw-bold);
+      @include mq(md) {
+        margin-block-start: var(--space-xl);
+        font-size: var(--fs-h-l);
+      }
+    }
+    :where(h3:not([class])) {
+      margin-block-start: 32px;
+      margin-block-end: var(--space-s);
+      font-size: var(--fs-h-m);
+      font-weight: var(--fw-bold);
+      @include mq(md) {
+        margin-block-start: 48px;
+        margin-block-end: 12px;
+      }
+    }
+    :where(h4:not([class])) {
+      margin-block-start: var(--space-m);
+      font-size: var(--fs-h-s);
+      font-weight: var(--fw-bold);
+    }
+    :where(ul:not([class])) {
+      margin-block: var(--space-s);
+      margin-inline: var(--space-xs) 0;
+      padding-inline-start: 20px;
+      @include mq(md) {
+        margin-inline: var(--space-s) 0;
+      }
+      & > li {
+        margin-block: var(--space-xs);
+        position: relative;
+        font-size: var(--fs-p-m);
+        &::before {
+          content: "";
+          display: block;
+          inline-size: 5px;
+          block-size: 5px;
+          position: absolute;
+          inset-block-start: .8125em;
+          inset-inline-start: -10px;
+          translate: -50% 0;
+          background-color: var(--c-accent);
+        }
+        & > ul {
+          margin-block: var(--space-xs);
+          margin-inline: var(--space-s) 0;
+        }
+      }
+    }
+    :where(ol:not([class])) {
+      display: grid;
+      row-gap: var(--space-xs);
+      margin-block-start: var(--space-m);
+      counter-reset: cnt;
+      & > li {
+        position: relative;
+        padding-inline-start: 2em;
+        font-size: var(--fs-p-m);
+        line-height: var(--lh-l);
+        &::before {
+          counter-increment: cnt;
+          content: counter(cnt)'.';
+          display: block;
+          inline-size: 5px;
+          block-size: 5px;
+          position: absolute;
+          inset-block-start: 0;
+          inset-inline-start: var(--space-xs);
+          color: var(--c-accent);
+        }
+      }
+    }
+    a {
+      color: var(--c-accent);
+      text-decoration-thickness: 1px;
+      text-underline-offset: .1em;
+      text-decoration: underline;
+      transition: background-color .3s ease;
+      &:hover {
+        background-color: var(--c-hover);
+      }
+    }
+    code {
+      padding: 0 var(--space-xs);
+      border-radius: 4px;
+      // background-color: var(--c-sub-bg);
+    }
   }
 </style>
