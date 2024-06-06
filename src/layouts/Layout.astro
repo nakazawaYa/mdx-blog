@@ -47,7 +47,7 @@ const { title, desc, isTop } = Astro.props;
   :root {
     --c-primary: #1A2633;
     --c-border-primary: #1A2633;
-    --c-accent: #6898cc;
+    --c-accent: #0063cc;
 
     --c-hover: rgb(104 152 204 / .2);
 
@@ -86,8 +86,8 @@ const { title, desc, isTop } = Astro.props;
     --space-2xl: 120px;
     --gutter: 20px;
     @include mq(md) {
-      --fs-h-xl: 2.25rem;
-      --fs-h-l: 1.875rem;
+      --fs-h-xl: 2rem;
+      --fs-h-l: 1.75rem;
       --fs-h-m: 1.5rem;
       --fs-h-s: 1.25rem;
 
@@ -102,16 +102,15 @@ const { title, desc, isTop } = Astro.props;
 
   body {
     min-height: 100dvh;
-    padding-block-start: var(--space-m);
     font-size: var(--fs-base);
     font-family: 'Noto Sans JP', sans-serif;
     line-height: var(--lh-base);
     @include mq(md) {
-      padding-block-start: var(--space-l);
+      padding-block-start: 32px;
     }
   }
   .main {
-    margin-inline: var(--gutter);
+    // margin-inline: var(--gutter);
     @include mq(md) {
       inline-size: 100%;
       max-inline-size: calc(var(--content-width) + var(--gutter) * 2);
@@ -131,10 +130,7 @@ const { title, desc, isTop } = Astro.props;
     }
     :where(p:not([class])) {
       margin-block: 18px;
-      font-size: var(--fs-p-m);
-      @include mq(md) {
-        margin-block: var(--space-m);
-      }
+      font-size: var(--fs-base);
       strong {
         font-weight: var(--fw-bold);
       }
@@ -154,7 +150,7 @@ const { title, desc, isTop } = Astro.props;
       font-size: var(--fs-h-m);
       font-weight: var(--fw-bold);
       @include mq(md) {
-        margin-block-start: var(--space-xl);
+        margin-block-start: 60px;
         font-size: var(--fs-h-l);
       }
     }
@@ -164,7 +160,7 @@ const { title, desc, isTop } = Astro.props;
       font-size: var(--fs-h-m);
       font-weight: var(--fw-bold);
       @include mq(md) {
-        margin-block-start: 48px;
+        margin-block-start: var(--space-l);
         margin-block-end: 12px;
       }
     }
@@ -202,24 +198,24 @@ const { title, desc, isTop } = Astro.props;
       }
     }
     :where(ol:not([class])) {
-      display: grid;
-      row-gap: var(--space-xs);
-      margin-block-start: var(--space-m);
       counter-reset: cnt;
+      margin-block: var(--space-s);
+      margin-inline: var(--space-xs) 0;
+      padding-inline-start: 20px;
+      @include mq(md) {
+        margin-inline: var(--space-s) 0;
+      }
       & > li {
+        margin-block: var(--space-xs);
         position: relative;
-        padding-inline-start: 2em;
         font-size: var(--fs-p-m);
-        line-height: var(--lh-l);
         &::before {
           counter-increment: cnt;
           content: counter(cnt)'.';
           display: block;
-          inline-size: 5px;
-          block-size: 5px;
           position: absolute;
           inset-block-start: 0;
-          inset-inline-start: var(--space-xs);
+          inset-inline-start: -20px;
           color: var(--c-accent);
         }
       }

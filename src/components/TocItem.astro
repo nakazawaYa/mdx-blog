@@ -16,3 +16,30 @@ const { heading } = Astro.props
     )
   }
 </li>
+
+<style lang="scss">
+  li {
+    margin-block: var(--space-xs);
+    position: relative;
+    font-size: var(--fs-p-m);
+
+    &::before {
+      content: "";
+      display: block;
+      inline-size: 5px;
+      block-size: 5px;
+      position: absolute;
+      inset-block-start: .8125em;
+      inset-inline-start: -10px;
+      translate: -50% 0;
+      background-color: var(--c-accent);
+    }
+    a {
+      font-size: var(--fs-p-s);
+    }
+    & > ol {
+      margin-block: var(--space-xs);
+      margin-inline: var(--space-s) 0;
+    }
+  }
+</style>

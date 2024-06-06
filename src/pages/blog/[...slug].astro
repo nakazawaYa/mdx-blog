@@ -29,7 +29,7 @@ const toc = headings.filter((heading) => heading.depth <= 3 && !(heading.slug ==
   <article>
     <div class="article-content">
       <div class="article-sidebar article-toc">
-        <h2>目次</h2>
+        <h2 class="article-toc-heading">目次</h2>
         <TOC headings={toc} />
       </div>
 
@@ -61,7 +61,7 @@ const toc = headings.filter((heading) => heading.depth <= 3 && !(heading.slug ==
       grid-template-areas: "body sidebar";
     }
   }
-  .article-sidebar {
+  .article-sidebar.article-toc {
     display: none;
     position: sticky;
     inset-block-start: 20px;
@@ -73,14 +73,22 @@ const toc = headings.filter((heading) => heading.depth <= 3 && !(heading.slug ==
       display: block;
     }
   }
+  .article-toc-heading {
+    font-size: var(--fs-h-s);
+    font-weight: var(--fw-bold);
+  }
   .article-main {
-    border: 1px solid var(--c-border-primary);
+    border-block-start: 1px solid var(--c-border-primary);
+    border-block-end: 1px solid var(--c-border-primary);
+    @include mq(md) {
+      border: 1px solid var(--c-border-primary);
+    }
     @include mq(xl) {
       grid-area: body;
     }
   }
   .article-head {
-    padding: var(--space-m);
+    padding: var(--space-m) var(--space-s);
     position: relative;
 
     background-color: var(--c-bg);
@@ -88,8 +96,15 @@ const toc = headings.filter((heading) => heading.depth <= 3 && !(heading.slug ==
     background-size: 20px 20px;
 
     border-block-end: 1px solid var(--c-border-primary);
+
+    @include mq(md) {
+      padding: var(--space-m);
+    }
   }
   .article-body {
-    padding: var(--space-m) var(--space-m);
+    padding: var(--space-m) var(--space-s);
+    @include mq(md) {
+      padding: var(--space-m);
+    }
   }
 </style>
