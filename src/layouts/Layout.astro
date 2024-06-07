@@ -33,14 +33,19 @@ const { title, desc, isTop } = Astro.props;
 
     <meta name="generator" content={Astro.generator} />
 
-    <script type="text/partytown" src="https://www.googletagmanager.com/gtag/js?id=G-FQ5WJVMXCS"></script>
-    <script type="text/partytown">
+    <script
+      type="text/partytown"
+      src="https://www.googletagmanager.com/gtag/js?id=G-FQ5WJVMXCS"
+      is:inline
+    ></script>
+    <script type="text/partytown" is:inline>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
 
       gtag('config', 'G-FQ5WJVMXCS');
     </script>
+    <link rel="sitemap" href="/sitemap-index.xml" />
 	</head>
 	<body>
     <Header isTop={isTop} />
