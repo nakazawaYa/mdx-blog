@@ -32,6 +32,15 @@ const { title, desc, isTop } = Astro.props;
     <!-- <link rel="apple-touch-icon" href="icon.png"> -->
 
     <meta name="generator" content={Astro.generator} />
+
+    <script type="text/partytown" src="https://www.googletagmanager.com/gtag/js?id=G-FQ5WJVMXCS"></script>
+    <script type="text/partytown">
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-FQ5WJVMXCS');
+    </script>
 	</head>
 	<body>
     <Header isTop={isTop} />
