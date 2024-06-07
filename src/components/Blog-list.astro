@@ -11,6 +11,9 @@ const {} = Astro.props;
 
 <style lang="scss">
   .blog-list {
-    border-block-end: ipx solid var(--c-border-primary);
+    // border-block-end: 1px solid var(--c-border-primary);
+    @include mq(md) {
+      border-inline: 1px solid var(--c-border-primary);
+    }
   }
 </style>

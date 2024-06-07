@@ -101,9 +101,9 @@ const { title, desc, isTop } = Astro.props;
     --gutter: 20px;
     @include mq(md) {
       --fs-h-xl: 2rem;
-      --fs-h-l: 1.75rem;
-      --fs-h-m: 1.5rem;
-      --fs-h-s: 1.25rem;
+      --fs-h-l: 1.5rem;
+      --fs-h-m: 1.25rem;
+      --fs-h-s: rem;
 
       --fs-p-l: 1.25rem;
       --fs-p-m: 1.125rem;
@@ -116,8 +116,10 @@ const { title, desc, isTop } = Astro.props;
 
   body {
     min-height: 100dvh;
+    color: var(--c-primary);
     font-size: var(--fs-base);
     font-family: 'Noto Sans JP', sans-serif;
+    font-feature-settings: "palt";
     line-height: var(--lh-base);
     @include mq(md) {
       padding-block-start: 32px;
@@ -149,6 +151,29 @@ const { title, desc, isTop } = Astro.props;
         font-weight: var(--fw-bold);
       }
     }
+    :where(a:not([class])) {
+      color: var(--c-accent);
+      text-decoration-thickness: 1px;
+      text-underline-offset: .1em;
+      text-decoration: underline;
+      transition: background-color .3s ease;
+      &:hover {
+        background-color: var(--c-hover);
+      }
+      &[target="_blank"] {
+        &:after {
+        content: "";
+          display: inline-block;
+          inline-size: 1rem;
+          block-size: 1rem;
+          margin-inline: .25rem;
+          background-size: contain;
+          background-repeat: no-repeat;
+          background-position: center;
+          background-image: url('data:image/svg+xml;charset=utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%230063cc%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20class%3D%22icon%20icon-tabler%20icons-tabler-outline%20icon-tabler-external-link%22%3E%3Cpath%20stroke%3D%22none%22%20d%3D%22M0%200h24v24H0z%22%20fill%3D%22none%22%2F%3E%3Cpath%20d%3D%22M12%206h-6a2%202%200%200%200%20-2%202v10a2%202%200%200%200%202%202h10a2%202%200%200%200%202%20-2v-6%22%20%2F%3E%3Cpath%20d%3D%22M11%2013l9%20-9%22%20%2F%3E%3Cpath%20d%3D%22M15%204h5v5%22%20%2F%3E%3C%2Fsvg%3E');
+        }
+      }
+    }
     :where(h2:not([class]),h3:not([class]),h4:not([class])) {
       scroll-margin-block-start: var(--space-m);
 
@@ -160,11 +185,11 @@ const { title, desc, isTop } = Astro.props;
     }
     :where(h2:not([class])) {
       margin-block-start: 48px;
-      margin-block-end: var(--space-s);
+
       font-size: var(--fs-h-m);
       font-weight: var(--fw-bold);
       @include mq(md) {
-        margin-block-start: 60px;
+        margin-block: 64px var(--space-l);
         font-size: var(--fs-h-l);
       }
     }
@@ -174,15 +199,14 @@ const { title, desc, isTop } = Astro.props;
       font-size: var(--fs-h-m);
       font-weight: var(--fw-bold);
       @include mq(md) {
-        margin-block-start: var(--space-l);
-        margin-block-end: 12px;
+        margin-block: var(--space-l) var(--space-m);
       }
     }
-    :where(h4:not([class])) {
-      margin-block-start: var(--space-m);
-      font-size: var(--fs-h-s);
-      font-weight: var(--fw-bold);
-    }
+    // :where(h4:not([class])) {
+    //   margin-block-start: var(--space-m);
+    //   font-size: var(--fs-h-s);
+    //   font-weight: var(--fw-bold);
+    // }
     :where(ul:not([class])) {
       margin-block: var(--space-s);
       margin-inline: var(--space-xs) 0;
@@ -234,14 +258,12 @@ const { title, desc, isTop } = Astro.props;
         }
       }
     }
-    a {
-      color: var(--c-accent);
-      text-decoration-thickness: 1px;
-      text-underline-offset: .1em;
-      text-decoration: underline;
-      transition: background-color .3s ease;
-      &:hover {
-        background-color: var(--c-hover);
+    blockquote {
+      margin-block: 18px;
+      padding: var(--space-2xs) var(--space-xs);
+      border-inline-start: 3px solid var(--c-accent);
+      p {
+        margin: 0;
       }
     }
     code {
