@@ -19,9 +19,8 @@ const { heading } = Astro.props
 
 <style lang="scss">
   li {
-    margin-block: var(--space-xs);
+    margin-block: 6px;
     position: relative;
-    font-size: var(--fs-p-m);
 
     &::before {
       content: "";
@@ -29,16 +28,18 @@ const { heading } = Astro.props
       inline-size: 5px;
       block-size: 5px;
       position: absolute;
-      inset-block-start: .8125em;
+      inset-block-start: .75em;
       inset-inline-start: -10px;
       translate: -50% 0;
       background-color: var(--c-accent);
     }
     a {
-      font-size: var(--fs-p-s);
+      color: var(--c-primary);
+      font-size: var(--fs-p-xs);
+      font-weight: var(--fw-normal);
     }
     & > ol {
-      margin-block: var(--space-xs);
+      margin-block: 6px;
       margin-inline: var(--space-s) 0;
     }
   }

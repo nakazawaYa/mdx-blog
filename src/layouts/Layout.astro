@@ -1,8 +1,5 @@
 ---
 import "the-new-css-reset";
-import '@fontsource/noto-sans-jp/400.css';
-import '@fontsource/noto-sans-jp/500.css';
-import '@fontsource/noto-sans-jp/700.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 interface Props {
@@ -31,8 +28,6 @@ const { title, desc, isTop } = Astro.props;
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <!-- <link rel="apple-touch-icon" href="icon.png"> -->
 
-    <meta name="generator" content={Astro.generator} />
-
     <script
       type="text/partytown"
       src="https://www.googletagmanager.com/gtag/js?id=G-FQ5WJVMXCS"
@@ -46,6 +41,11 @@ const { title, desc, isTop } = Astro.props;
       gtag('config', 'G-FQ5WJVMXCS');
     </script>
     <link rel="sitemap" href="/sitemap-index.xml" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preload" as="style" fetchpriority="high" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" media="print" onload='this.media="all"' />
 	</head>
 	<body>
     <Header isTop={isTop} />
@@ -80,6 +80,7 @@ const { title, desc, isTop } = Astro.props;
     --fs-p-l: 1.125rem;
     --fs-p-m: var(--fs-base);
     --fs-p-s: .875rem;
+    --fs-p-xs: .75rem;
 
     --fw-normal: 400;
     --fw-medium: 500;
@@ -99,15 +100,18 @@ const { title, desc, isTop } = Astro.props;
     --space-xl: 80px;
     --space-2xl: 120px;
     --gutter: 20px;
+
+    --leading-trim: calc((1em - 1lh) / 2);
     @include mq(md) {
       --fs-h-xl: 2rem;
       --fs-h-l: 1.5rem;
       --fs-h-m: 1.25rem;
-      --fs-h-s: rem;
+      --fs-h-s: 1rem;
 
       --fs-p-l: 1.25rem;
       --fs-p-m: 1.125rem;
       --fs-p-s: 1rem;
+      --fs-p-xs: .875rem;
 
       --gutter: 80px;
       --content-width: 1200px;
@@ -124,6 +128,9 @@ const { title, desc, isTop } = Astro.props;
     @include mq(md) {
       padding-block-start: 32px;
     }
+  }
+  a {
+    color: var(--c-primary);
   }
   .main {
     // margin-inline: var(--gutter);
@@ -147,7 +154,7 @@ const { title, desc, isTop } = Astro.props;
     :where(p:not([class])) {
       margin-block: 18px;
       font-size: var(--fs-base);
-      strong {
+      b {
         font-weight: var(--fw-bold);
       }
     }
@@ -209,15 +216,13 @@ const { title, desc, isTop } = Astro.props;
     // }
     :where(ul:not([class])) {
       margin-block: var(--space-s);
-      margin-inline: var(--space-xs) 0;
-      padding-inline-start: 20px;
       @include mq(md) {
         margin-inline: var(--space-s) 0;
       }
-      & > li {
+      li {
         margin-block: var(--space-xs);
         position: relative;
-        font-size: var(--fs-p-m);
+        font-size: var(--fs-base);
         &::before {
           content: "";
           display: block;
@@ -231,22 +236,16 @@ const { title, desc, isTop } = Astro.props;
         }
         & > ul {
           margin-block: var(--space-xs);
-          margin-inline: var(--space-s) 0;
         }
       }
     }
     :where(ol:not([class])) {
       counter-reset: cnt;
       margin-block: var(--space-s);
-      margin-inline: var(--space-xs) 0;
       padding-inline-start: 20px;
-      @include mq(md) {
-        margin-inline: var(--space-s) 0;
-      }
       & > li {
         margin-block: var(--space-xs);
         position: relative;
-        font-size: var(--fs-p-m);
         &::before {
           counter-increment: cnt;
           content: counter(cnt)'.';
@@ -270,6 +269,31 @@ const { title, desc, isTop } = Astro.props;
       padding: 0 var(--space-xs);
       border-radius: 4px;
       // background-color: var(--c-sub-bg);
+    }
+
+    .msg {
+      display: grid;
+      grid-template-columns: 24px 1fr;
+      gap: 10px;
+      margin-block: 24px;
+      padding: 20px 16px;
+      background-color: #fff6e4;
+    }
+    .msg-symbol {
+      display: grid;
+      place-items: center;
+      inline-size: 24px;
+      block-size: 24px;
+      color: #fff;
+      font-weight: var(--fw-bold);
+      line-height: 1;
+      background-color: #ffb84c;
+      border-radius: 50%;
+    }
+    .msg-content {
+      p {
+        margin: 0;
+      }
     }
   }
 </style>
