@@ -1,29 +1,29 @@
 ---
-import "the-new-css-reset";
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
+import 'the-new-css-reset'
+import Header from '../components/Header.astro'
+import Footer from '../components/Footer.astro'
 interface Props {
-	title: string,
-  desc: string,
-  isTop?: boolean,
+  title: string
+  desc: string
+  isTop?: boolean
 }
 
-const { title, desc, isTop } = Astro.props;
+const { title, desc, isTop } = Astro.props
 ---
 
 <!doctype html>
 <html lang="ja">
-	<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>{title}</title>
-    <meta name="description" content={desc}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={desc} />
 
-    <meta property="og:title" content="">
-    <meta property="og:type" content="">
-    <meta property="og:url" content="">
-    <meta property="og:image" content="">
-    <meta property="og:image:alt" content="">
+    <meta property="og:title" content="" />
+    <meta property="og:type" content="" />
+    <meta property="og:url" content="" />
+    <meta property="og:image" content="" />
+    <meta property="og:image:alt" content="" />
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <!-- <link rel="apple-touch-icon" href="icon.png"> -->
@@ -31,23 +31,34 @@ const { title, desc, isTop } = Astro.props;
     <script
       type="text/partytown"
       src="https://www.googletagmanager.com/gtag/js?id=G-FQ5WJVMXCS"
-      is:inline
-    ></script>
+      is:inline></script>
     <script type="text/partytown" is:inline>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
+      window.dataLayer = window.dataLayer || []
+      function gtag() {
+        dataLayer.push(arguments)
+      }
+      gtag('js', new Date())
 
-      gtag('config', 'G-FQ5WJVMXCS');
+      gtag('config', 'G-FQ5WJVMXCS')
     </script>
     <link rel="sitemap" href="/sitemap-index.xml" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="preload" as="style" fetchpriority="high" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" media="print" onload='this.media="all"' />
-	</head>
-	<body>
+    <link
+      rel="preload"
+      as="style"
+      fetchpriority="high"
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap"
+      media="print"
+      onload='this.media="all"'
+    />
+  </head>
+  <body>
     <Header isTop={isTop} />
 
     <main class="main">
@@ -55,32 +66,22 @@ const { title, desc, isTop } = Astro.props;
     </main>
 
     <Footer />
-	</body>
+  </body>
 </html>
 <style lang="scss" is:global>
   :root {
-    --c-primary: #1A2633;
-    --c-border-primary: #1A2633;
+    --rem-unit: 16;
+
+    --c-primary: #1a2633;
+    --c-border-primary: #1a2633;
     --c-accent: #0063cc;
 
-    --c-hover: rgb(104 152 204 / .2);
+    --c-hover: rgb(104 152 204 / 0.2);
 
     --c-bg: #fff;
 
     --c-white: #fff;
     --c-gray: #f5f8fa;
-
-    --fs-base: 1rem;
-
-    --fs-h-xl: 1.5rem;
-    --fs-h-l: 1.5rem;
-    --fs-h-m: 1.25rem;
-    --fs-h-s: 1.125rem;
-
-    --fs-p-l: 1.125rem;
-    --fs-p-m: var(--fs-base);
-    --fs-p-s: .875rem;
-    --fs-p-xs: .75rem;
 
     --fw-normal: 400;
     --fw-medium: 500;
@@ -102,28 +103,63 @@ const { title, desc, isTop } = Astro.props;
     --gutter: 20px;
 
     --leading-trim: calc((1em - 1lh) / 2);
+    --spacing-unit: 0.5rem;
+    --spacing-xs: calc(var(--spacing-unit) / 2);
+    --spacing-sm: var(--spacing-unit);
+    --spacing-md: calc(var(--spacing-unit) * 2);
+    --spacing-lg: calc(var(--spacing-unit) * 3);
+    --spacing-xl: calc(var(--spacing-unit) * 5);
+    --spacing-2xl: calc(var(--spacing-unit) * 8);
+    --spacing-3xl: calc(var(--spacing-unit) * 13);
+    --spacing-xs-trim: calc(var(--spacing-xs) + var(--leading-trim));
+    --spacing-sm-trim: calc(var(--spacing-sm) + var(--leading-trim));
+    --spacing-md-trim: calc(var(--spacing-md) + var(--leading-trim));
+    --spacing-lg-trim: calc(var(--spacing-lg) + var(--leading-trim));
+    --spacing-xl-trim: calc(var(--spacing-xl) + var(--leading-trim));
+    --spacing-2xl-trim: calc(var(--spacing-2xl) + var(--leading-trim));
+    --spacing-3xl-trim: calc(var(--spacing-3xl) + var(--leading-trim));
+    --spacing-gutter: max(5svi, var(--spacing-md));
+
     @include mq(md) {
-      --fs-h-xl: 2rem;
-      --fs-h-l: 1.5rem;
-      --fs-h-m: 1.25rem;
-      --fs-h-s: 1rem;
-
-      --fs-p-l: 1.25rem;
-      --fs-p-m: 1.125rem;
-      --fs-p-s: 1rem;
-      --fs-p-xs: .875rem;
-
       --gutter: 80px;
       --content-width: 1200px;
     }
   }
 
+  :is(body, body *),
+  :is(body, body *):after,
+  :is(body, body *):before {
+    --clamp-viewport-min: 375;
+    --clamp-viewport-max: 1200;
+    --clamp-slope: calc(
+      (var(--clamp-max) - var(--clamp-min)) /
+        (var(--clamp-viewport-max) - var(--clamp-viewport-min))
+    );
+    --clamp-y-axis-intersection: calc(
+      var(--clamp-min) - (var(--clamp-slope) * var(--clamp-viewport-min))
+    );
+    --clamp-preffered-value: calc(
+      var(--clamp-y-axis-intersection) * (1rem / var(--rem-unit)) +
+        (var(--clamp-slope) * 100svi)
+    );
+    --clamp: clamp(
+      calc(var(--clamp-min) * (1rem / var(--rem-unit))),
+      var(--clamp-preffered-value),
+      calc(var(--clamp-max) * (1rem / var(--rem-unit)))
+    );
+    font-size: var(--clamp);
+  }
+
   body {
+    --clamp-viewport-min: 375;
+    --clamp-viewport-max: 1200;
+    --clamp-min: 14;
+    --clamp-max: 16;
+
     min-height: 100dvh;
     color: var(--c-primary);
-    font-size: var(--fs-base);
     font-family: 'Noto Sans JP', sans-serif;
-    font-feature-settings: "palt";
+    font-feature-settings: 'palt';
     line-height: var(--lh-base);
     @include mq(md) {
       padding-block-start: 32px;
@@ -142,18 +178,21 @@ const { title, desc, isTop } = Astro.props;
     }
   }
   .markdown {
+    --_spacing-start: var(--spacing-xl);
+    --_spacing-end: var(--spacing-xl);
     & > * {
       line-height: var(--lh-l);
-      &:first-child {
-        margin-block-start: 0;
-      }
-      &:last-child {
-        margin-block-end: 0;
-      }
     }
+    & > :where(:not(:first-child)) {
+      margin-block-start: var(--_spacing-start);
+    }
+    & > :where(:not(:last-child)) {
+      margin-block-end: var(--_spacing-end);
+    }
+
     :where(p:not([class])) {
-      margin-block: 18px;
-      font-size: var(--fs-base);
+      --_spacing-start: var(--spacing-lg-trim);
+      --_spacing-end: var(--spacing-lg-trim);
       b {
         font-weight: var(--fw-bold);
       }
@@ -161,19 +200,19 @@ const { title, desc, isTop } = Astro.props;
     :where(a:not([class])) {
       color: var(--c-accent);
       text-decoration-thickness: 1px;
-      text-underline-offset: .1em;
+      text-underline-offset: 0.1em;
       text-decoration: underline;
-      transition: background-color .3s ease;
+      transition: background-color 0.3s ease;
       &:hover {
         background-color: var(--c-hover);
       }
-      &[target="_blank"] {
+      &[target='_blank'] {
         &:after {
-        content: "";
+          content: '';
           display: inline-block;
           inline-size: 1rem;
           block-size: 1rem;
-          margin-inline: .25rem;
+          margin-inline: 0.25rem;
           background-size: contain;
           background-repeat: no-repeat;
           background-position: center;
@@ -181,74 +220,66 @@ const { title, desc, isTop } = Astro.props;
         }
       }
     }
-    :where(h2:not([class]),h3:not([class]),h4:not([class])) {
+    :where(h2:not([class]), h3:not([class]), h4:not([class])) {
       scroll-margin-block-start: var(--space-m);
-
       font-weight: var(--fw-bold);
-      font-feature-settings: "palt";
+      font-feature-settings: 'palt';
       line-height: 1.375;
-      letter-spacing: .05em;
+      letter-spacing: 0.05em;
+      text-wrap: pretty;
       word-break: auto-phrase;
     }
     :where(h2:not([class])) {
-      margin-block-start: 48px;
-
-      font-size: var(--fs-h-m);
-      font-weight: var(--fw-bold);
-      @include mq(md) {
-        margin-block: 64px var(--space-l);
-        font-size: var(--fs-h-l);
-      }
+      --clamp-min: 18;
+      --clamp-max: 24;
+      --_spacing-start: var(--spacing-2xl);
     }
     :where(h3:not([class])) {
-      margin-block-start: 32px;
-      margin-block-end: var(--space-s);
-      font-size: var(--fs-h-m);
-      font-weight: var(--fw-bold);
-      @include mq(md) {
-        margin-block: var(--space-l) var(--space-m);
-      }
+      --clamp-min: 16;
+      --clamp-max: 20;
+      --_spacing-start: var(--spacing-2xl-trim);
+      --_spacing-end: var(--spacing-xl-trim);
     }
-    // :where(h4:not([class])) {
-    //   margin-block-start: var(--space-m);
-    //   font-size: var(--fs-h-s);
-    //   font-weight: var(--fw-bold);
-    // }
     :where(ul:not([class])) {
-      margin-block: var(--space-s);
-      @include mq(md) {
-        margin-inline: var(--space-s) 0;
-      }
+      --_spacing-start: var(--spacing-xl-trim);
+      --_spacing-end: var(--spacing-xl-trim);
+
+      padding-inline-start: 1.5em;
       li {
-        margin-block: var(--space-xs);
+        --_spacing-start: var(--spacing-xs-trim);
+        --_spacing-end: var(--spacing-xs-trim);
         position: relative;
-        font-size: var(--fs-base);
+
         &::before {
-          content: "";
+          content: '';
           display: block;
-          inline-size: 5px;
-          block-size: 5px;
+          inline-size: 6px;
+          block-size: 6px;
           position: absolute;
-          inset-block-start: .8125em;
-          inset-inline-start: -10px;
-          translate: -50% 0;
+          inset-block-start: 0.5lh;
+          inset-inline-start: -1em;
+          translate: 0 -50%;
           background-color: var(--c-accent);
         }
         & > ul {
-          margin-block: var(--space-xs);
+          --_spacing-start: var(--spacing-xs-trim);
+          --_spacing-end: var(--spacing-xs-trim);
         }
       }
     }
     :where(ol:not([class])) {
+      --_spacing-start: var(--spacing-xl-trim);
+      --_spacing-end: var(--spacing-xl-trim);
+
       counter-reset: cnt;
-      margin-block: var(--space-s);
       padding-inline-start: 20px;
       & > li {
-        margin-block: var(--space-xs);
+        --_spacing-start: var(--spacing-xs-trim);
+        --_spacing-end: var(--spacing-xs-trim);
         position: relative;
         &::before {
           counter-increment: cnt;
-          content: counter(cnt)'.';
+          content: counter(cnt) '.';
           display: block;
           position: absolute;
           inset-block-start: 0;
@@ -259,7 +290,8 @@ const { title, desc, isTop } = Astro.props;
     }
     blockquote {
       margin-block: 18px;
-      padding: var(--space-2xs) var(--space-xs);
+      padding: 1em 0.75em;
+      border: 1px solid var(--c-accent);
       border-inline-start: 3px solid var(--c-accent);
       p {
         margin: 0;

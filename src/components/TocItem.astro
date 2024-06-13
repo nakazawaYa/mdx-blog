@@ -34,8 +34,10 @@ const { heading } = Astro.props
       background-color: var(--c-accent);
     }
     a {
+      --clamp-min: 12;
+      --clamp-max: 14;
+
       color: var(--c-primary);
-      font-size: var(--fs-p-xs);
       font-weight: var(--fw-normal);
     }
     & > ol {

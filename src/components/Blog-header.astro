@@ -36,9 +36,11 @@ const { isList, slug, title, date, tags } = Astro.props;
 
 <style lang="scss">
   .blog-heading {
+    --clamp-min: 20;
+    --clamp-max: 22;
+
     // margin-block-end: var(--space-s);
     padding-inline-end: var(--space-m);
-    font-size: var(--fs-p-l);
     font-weight: var(--fw-medium);
     @include mq(md) {
       padding-inline-end: var(--space-l);
@@ -77,14 +79,16 @@ const { isList, slug, title, date, tags } = Astro.props;
     }
   }
   .blog-header-title {
+    --clamp-min: 20;
+    --clamp-max: 32;
+
     margin-block-end: var(--space-xs);
-    font-size: var(--fs-h-m);
     font-weight: var(--fw-bold);
   }
   .blog-time {
     display: block;
     margin-block-end: var(--space-m);
-    font-size: var(--fs-p-s);
+
   }
   .blog-tag {
     display: flex;
@@ -96,7 +100,7 @@ const { isList, slug, title, date, tags } = Astro.props;
   }
   .blog-tag-item {
     padding: var(--space-2xs);
-    font-size: var(--fs-p-s);
+
     line-height: 1.2;
     background-color: var(--c-bg);
     border: 1px solid var(--c-border-primary);

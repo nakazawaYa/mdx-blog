@@ -74,7 +74,8 @@ const toc = headings.filter((heading) => heading.depth <= 3 && !(heading.slug ==
     }
   }
   .article-toc-heading {
-    font-size: var(--fs-h-s);
+    --clamp-min: 18;
+    --clamp-max: 20;
     font-weight: var(--fw-bold);
   }
   .article-main {
