@@ -28,11 +28,6 @@ const toc = headings.filter((heading) => heading.depth <= 3 && !(heading.slug ==
 <Layout title={entry.data.title + blogTitle} desc={entry.data.desc}>
   <article>
     <div class="article-content">
-      <div class="article-sidebar article-toc">
-        <h2 class="article-toc-heading">目次</h2>
-        <TOC headings={toc} />
-      </div>
-
       <div class="article-main">
         <div class="article-head">
           <BlogHeader
@@ -46,6 +41,11 @@ const toc = headings.filter((heading) => heading.depth <= 3 && !(heading.slug ==
         <div class="article-body markdown">
           <Content />
         </div>
+      </div>
+
+      <div class="article-sidebar article-toc">
+        <h2 class="article-toc-heading">目次</h2>
+        <TOC headings={toc} />
       </div>
     </div>
   </article>
@@ -67,7 +67,7 @@ const toc = headings.filter((heading) => heading.depth <= 3 && !(heading.slug ==
     inset-block-start: 20px;
     grid-area: sidebar;
     align-self: start;
-    padding: var(--space-m);
+    padding: var(--spacing-lg);
     border: 1px solid var(--c-border-primary);
     @include mq(xl) {
       display: block;
@@ -89,7 +89,7 @@ const toc = headings.filter((heading) => heading.depth <= 3 && !(heading.slug ==
     }
   }
   .article-head {
-    padding: var(--space-m) var(--space-s);
+    padding: var(--spacing-lg) var(--spacing-md);
     position: relative;
 
     background-color: var(--c-bg);
@@ -99,13 +99,13 @@ const toc = headings.filter((heading) => heading.depth <= 3 && !(heading.slug ==
     border-block-end: 1px solid var(--c-border-primary);
 
     @include mq(md) {
-      padding: var(--space-m);
+      padding: var(--spacing-lg);
     }
   }
   .article-body {
-    padding: var(--space-m) var(--space-s);
+    padding: var(--spacing-lg) var(--spacing-md);
     @include mq(md) {
-      padding: var(--space-m);
+      padding: var(--spacing-lg);
     }
   }
 </style>

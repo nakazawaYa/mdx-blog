@@ -1,8 +1,9 @@
 import { defineConfig } from 'astro/config';
 import partytown from "@astrojs/partytown";
 import mdx from "@astrojs/mdx";
-
 import sitemap from "@astrojs/sitemap";
+
+import react from "@astrojs/react";
 
 // https://astro.build/config
 export default defineConfig({
@@ -11,7 +12,7 @@ export default defineConfig({
     config: {
       forward: ["dataLayer.push"]
     }
-  }), mdx(), sitemap()],
+  }), mdx(), sitemap(), react()],
   vite: {
     css: {
       preprocessorOptions: {

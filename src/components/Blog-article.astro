@@ -24,12 +24,12 @@ const { isList, slug, title, date, tags } = Astro.props;
 
 <style lang="scss">
   .blog-article {
-    padding: var(--space-s);
+    padding: var(--spacing-md);
     position: relative;
-    border-block-end: 1px solid var(--c-border-primary);
+    border: 3px solid var(--c-border-primary);
     transition: background-color .3s ease;
     @include mq(md) {
-      padding: var(--space-m);
+      padding: var(--spacing-lg);
     }
     &:hover {
       background-color: var(--c-hover);

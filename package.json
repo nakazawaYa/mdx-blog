@@ -12,9 +12,14 @@
   "dependencies": {
     "@astrojs/check": "^0.7.0",
     "@astrojs/mdx": "^3.0.1",
+    "@astrojs/react": "^3.6.0",
     "@astrojs/sitemap": "^3.1.5",
     "@fontsource/noto-sans-jp": "^5.0.19",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
     "astro": "^4.9.2",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
     "the-new-css-reset": "^1.11.2",
     "typescript": "^5.4.5"
   },

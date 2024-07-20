@@ -39,11 +39,11 @@ const { isList, slug, title, date, tags } = Astro.props;
     --clamp-min: 20;
     --clamp-max: 22;
 
-    // margin-block-end: var(--space-s);
-    padding-inline-end: var(--space-m);
-    font-weight: var(--fw-medium);
+    // margin-block-end: var(--spacing-md);
+    padding-inline-end: var(--spacing-lg);
+    font-weight: var(--fw-bold);
     @include mq(md) {
-      padding-inline-end: var(--space-l);
+      padding-inline-end: var(--spacing-xl);
     }
   }
   .blog-link {
@@ -54,7 +54,7 @@ const { isList, slug, title, date, tags } = Astro.props;
       block-size: 16px;
       position: absolute;
       inset-block-start: 50%;
-      inset-inline-end: var(--space-m);
+      inset-inline-end: var(--spacing-lg);
       translate: 0 -50%;
       border-block-start: 1px solid var(--c-border-primary);
       border-inline-end: 1px solid var(--c-border-primary);
@@ -63,7 +63,7 @@ const { isList, slug, title, date, tags } = Astro.props;
       @include mq(md) {
         inline-size: 20px;
         block-size: 20px;
-        inset-inline-end: var(--space-l);
+        inset-inline-end: var(--spacing-xl);
       }
     }
     &::after {
@@ -74,7 +74,7 @@ const { isList, slug, title, date, tags } = Astro.props;
     }
     &:hover {
       &::before {
-        right: var(--space-m);
+        right: var(--spacing-lg);
       }
     }
   }
@@ -82,24 +82,26 @@ const { isList, slug, title, date, tags } = Astro.props;
     --clamp-min: 20;
     --clamp-max: 32;
 
-    margin-block-end: var(--space-xs);
+    margin-block-end: var(--spacing-sm);
     font-weight: var(--fw-bold);
   }
   .blog-time {
-    display: block;
-    margin-block-end: var(--space-m);
+    --clamp-min: 14;
+    --clamp-max: 16;
 
+    display: block;
+    margin-block-end: var(--spacing-lg);
   }
   .blog-tag {
     display: flex;
-    gap: var(--space-xs);
-    padding-inline-end: var(--space-m);
+    gap: var(--spacing-sm);
+    padding-inline-end: var(--spacing-lg);
     @include mq(md) {
-      padding-inline-end: var(--space-l);
+      padding-inline-end: var(--spacing-xl);
     }
   }
   .blog-tag-item {
-    padding: var(--space-2xs);
+    padding: var(--spacing-xs);
 
     line-height: 1.2;
     background-color: var(--c-bg);
